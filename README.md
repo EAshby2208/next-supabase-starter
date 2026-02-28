@@ -98,10 +98,10 @@ README.md
 ## Using This Starter For New Projects
 
 ## Environment Variables
-Create `.env.local`
-    > NEXT_PUBLI_SUPABASE_URL=<br>
-    > NEXT_PUBLIC_SUPABASE_ANON_KEY=<br>
-    > NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=<br>
+Create `.env.local`<br>
+    NEXT_PUBLI_SUPABASE_URL=<br>
+    NEXT_PUBLIC_SUPABASE_ANON_KEY=<br>
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=<br>
 Get value from:
 ```
 supabase status
@@ -121,23 +121,28 @@ Do NOT commit `.env.local`
 ## Troubleshooting
 ### Docker not running
 Start Docker Desktop
-``` supabase start ```
+``` supabase start
+```
 ### Port already in use
 Kill Next.js process
-``` pkill node ```
+``` pkill node 
+```
 ### Supabase already running
 ```
 supabase stop
 supabase start
 ```
 ### Database not updating
-``` supabase db reset ```
+``` supabase db reset
+```
 ### Login not working
 Check:
-``` .env.local ```
+``` .env.local 
+```
 ### Avatar upload fails
 Make sure bucket exists:
-``` avatars ```
+``` avatars 
+```
 and is public.
 
 ## Author
