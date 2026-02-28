@@ -1,4 +1,5 @@
 // app/_components/logout_button.tsx
+
 "use client";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
