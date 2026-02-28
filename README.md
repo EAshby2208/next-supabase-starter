@@ -58,10 +58,11 @@ npm run dev
 ```
 
 ## Project Structure
-*   `app/`
-    *   `login/`
-    *   `signup/`
-*   `lib/`
+    `app/`
+    |---`login/`
+    |---`signup/`
+   `lib/`
+
 
 ## Environment Variables
 
