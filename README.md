@@ -99,11 +99,13 @@ README.md
 
 ## Environment Variables
 Create `.env.local`
-    NEXT_PUBLI_SUPABASE_URL=
-    NEXT_PUBLIC_SUPABASE_ANON_KEY=
-    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
+    > NEXT_PUBLI_SUPABASE_URL=<br>
+    > NEXT_PUBLIC_SUPABASE_ANON_KEY=<br>
+    > NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=<br>
 Get value from:
-``` supabase status ```
+```
+supabase status
+```
 Do NOT commit `.env.local`
 
 ## Database Schema Overview
