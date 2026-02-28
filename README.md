@@ -88,50 +88,55 @@ supabase/
 proxy.ts
 package.json
 tsconfig.json
-.env.example
+.env.local
 .gitignore
 README.md
 ```
+### Important Files
 
 
-## Important Files
-
+## Using This Starter For New Projects
 
 ## Environment Variables
+Create `.env.local`
+    NEXT_PUBLI_SUPABASE_URL=
+    NEXT_PUBLIC_SUPABASE_ANON_KEY=
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
+Get value from:
+``` supabase status ```
+Do NOT commit `.env.local`
 
-## Supabase Requirements
+## Database Schema Overview
 
-### Storage Bucket
+## Authentication Flow
 
-## Database Schema
+## File Storage
 
-## Routes
+## Deploment Instructions
 
-## Middleware / Session Handling
+## GitHub Actions Migration Workflow
 
-## Notes
+## Troubleshooting
+### Docker not running
+Start Docker Desktop
+``` supabase start ```
+### Port already in use
+Kill Next.js process
+``` pkill node ```
+### Supabase already running
+```
+supabase stop
+supabase start
+```
+### Database not updating
+``` supabase db reset ```
+### Login not working
+Check:
+``` .env.local ```
+### Avatar upload fails
+Make sure bucket exists:
+``` avatars ```
+and is public.
 
+## Author
 
-
-
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
