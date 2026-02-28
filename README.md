@@ -58,10 +58,43 @@ npm run dev
 ```
 
 ## Project Structure
-    `app/`
-    |---`login/`
-    |---`signup/`
-   `lib/`
+```
+app/
+    layout.tsx
+    page.tsx
+    login/
+        page.tsx
+    signup/
+        page.tsx
+    dashboard/
+        page.tsx
+    profile/
+        page.tsx
+    _components/
+        login_form.tsx
+        signup_form.tsx
+        logout_button.tsx
+        avatar_upload.tsx
+lib/
+    supabase/
+        client.ts
+        server.ts
+        proxy.ts
+    hooks/
+        useAuth.ts
+supabase/
+    schemas/
+        profiles.sql
+proxy.ts
+package.json
+tsconfig.json
+.env.example
+.gitignore
+README.md
+```
+
+
+## Important Files
 
 
 ## Environment Variables
