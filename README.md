@@ -12,8 +12,8 @@ The purpose is to serve as a reusable starter template for building new apps tha
 
 ## Prerequisites
 Before running project, install:
-* Node.js &ge 18
-* npm &ge 9
+* Node.js ≥ 18
+* npm ≥ 9
 * Docker Desktop (required for Supabase local development)
 * Supabase CLI
 Install Supabase CLI:
@@ -98,10 +98,12 @@ README.md
 ## Using This Starter For New Projects
 
 ## Environment Variables
-Create `.env.local`<br>
-    NEXT_PUBLI_SUPABASE_URL=<br>
+Create `.env.local`
+
+    NEXT_PUBLIC_SUPABASE_URL=<br>
     NEXT_PUBLIC_SUPABASE_ANON_KEY=<br>
     NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=<br>
+    
 Get value from:
 ```
 supabase status
@@ -121,11 +123,13 @@ Do NOT commit `.env.local`
 ## Troubleshooting
 ### Docker not running
 Start Docker Desktop
-``` supabase start
+```
+supabase start
 ```
 ### Port already in use
 Kill Next.js process
-``` pkill node 
+```
+pkill node 
 ```
 ### Supabase already running
 ```
@@ -133,15 +137,18 @@ supabase stop
 supabase start
 ```
 ### Database not updating
-``` supabase db reset
+```
+supabase db reset
 ```
 ### Login not working
 Check:
-``` .env.local 
+```
+.env.local 
 ```
 ### Avatar upload fails
 Make sure bucket exists:
-``` avatars 
+```
+avatars 
 ```
 and is public.
 
