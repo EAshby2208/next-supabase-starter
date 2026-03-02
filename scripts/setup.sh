@@ -24,11 +24,17 @@ echo ""
 # -----------------------------
 echo "🏃 Starting Supabase..."
 
-npx supabase start
-if [ $? -ne 0 ]; then
-  echo "❌ Supabase failed to start"
-  exit 1
+STATUS=$(npx supabase status 2>/dev/null)
+if [[ $STATUS == *"Project URL"* ]]; then
+  echo "⚠️ Supabase is already running"
+else
+    npx supabase start
+    if [ $? -ne 0 ]; then
+        echo "❌ Supabase failed to start"
+        exit 1
+    fi
 fi
+
 echo "✅ Supabase running"
 echo ""
 
@@ -37,9 +43,22 @@ echo ""
 # -----------------------------
 echo "🔑 Extracting Supabase credentials..."
 
-SUPABASE_URL=$(npx supabase status | grep "URL" | awk '{print $3}')
-SUPABASE_ANON_KEY=$(npx supabase status | grep "anon key" | awk '{print $3}')
+STATUS=$(npx supabase status 2>/dev/null)
 
+SUPABASE_URL=$(echo "$STATUS" | grep "Project URL" | awk '{print $3}')
+SUPABASE_ANON_KEY=$(echo "$STATUS" | grep "anon key" | awk '{print $2}')
+SUPABASE_PUBLISHABLE_KEY=$(echo "$STATUS" | grep "publishable key" | awk '{print $2}')
+
+if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ] || [ -z "$SUPABASE_PUBLISHABLE_KEY" ]; then
+  echo "❌ Failed to extract Supabase credentials"
+  exit 1
+fi
+
+echo "✅ Credentials extracted"
+echo "URL: $SUPABASE_URL"
+echo "Anon Key: $SUPABASE_ANON_KEY"
+echo "Publishable Key: $SUPABASE_PUBLISHABLE_KEY"
+echo ""
 
 # -----------------------------
 # Create .env.local
@@ -83,7 +102,3 @@ echo "Next steps:"
 echo "1. npm run dev"
 echo "2. Open http://localhost:3000"
 echo "3. Sign up for a new account"
-
-
-
-

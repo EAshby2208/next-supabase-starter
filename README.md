@@ -23,6 +23,11 @@ npm install -g supabase
 Start Docker before running Supabase
 
 ## Quick Start
+Make the setup script executable (only needed once):
+
+```bash
+chmod +x scripts/setup.sh
+```
 Run the setup script:
 ```bash
 npm run setup
@@ -40,17 +45,18 @@ The setup script will:
 
 ## Manual Setup Instructions
 If you prefer step-by-step setup:
+
 Install dependencies
 ```bash
 npm install
 ```
 Start Supabase
 ```bash
-supabase start
+npx supabase start
 ```
 Apply database schema
 ```bash
-supabase db reset
+npx supabase db reset
 ```
 Start dev server
 ```bash
@@ -100,10 +106,10 @@ README.md
 ## Environment Variables
 Create `.env.local`
 
-    NEXT_PUBLIC_SUPABASE_URL=<br>
-    NEXT_PUBLIC_SUPABASE_ANON_KEY=<br>
-    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=<br>
-    
+    NEXT_PUBLIC_SUPABASE_URL=
+    NEXT_PUBLIC_SUPABASE_ANON_KEY=
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
+
 Get value from:
 ```
 supabase status

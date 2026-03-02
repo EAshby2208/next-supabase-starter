@@ -1,0 +1,29 @@
+name: Supabase Migrations
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'migrations/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'package-lock.json'
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: migrate
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: 'latest'
+
+      - name: Link to Project
+        run: SUPABASE_ACCESS_TOKEN=${{ secrets.SUPABASE_ACCESS_TOKEN }} supabase link --project-ref ${{ secrets.SUPABASE_PROJECT_ID }}
+      
+      - name: Apply Supabase Migrations
+        run: SUPABASE_ACCESS_TOKEN=${{ secrets.SUPABASE_ACCESS_TOKEN }} supabase db push --force
+          
