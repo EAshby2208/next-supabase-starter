@@ -45,9 +45,6 @@ echo "🔑 Extracting Supabase credentials..."
 
 STATUS=$(npx supabase status)
 
-# SUPABASE_URL=$(echo "$STATUS" | grep "Project URL" | awk -F '│' '{print $3}' | xargs)
-# SUPABASE_ANON_KEY=$(echo "$STATUS" | grep "Publishable" | awk -F '│' '{print $3}' | xargs)
-
 SUPABASE_URL=$(echo "$STATUS" | grep "Project URL" | awk '{print $5}')
 SUPABASE_ANON_KEY=$(echo "$STATUS" | grep "Publishable" | awk '{print $4}')
 echo "$STATUS"
@@ -78,7 +75,7 @@ fi
 
 cat > .env.local <<EOF
 NEXT_PUBLIC_SUPABASE_URL=$SUPABASE_URL
-NEXT_PUBLIC_SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=$SUPABASE_ANON_KEY
 EOF
 
 echo "✅ .env.local created"
@@ -106,6 +103,6 @@ echo "🎉 Setup complete!"
 echo ""
 echo "Next steps:"
 echo "1. npm run dev"
-echo "2. Open http://localhost:3000"
+echo "2. Open http://localhost:3000 (or next available port) in your browser"
 echo "3. Sign up for a new account"
 
