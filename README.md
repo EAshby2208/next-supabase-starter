@@ -1,4 +1,4 @@
-# Next.js + Supabase Auth App
+# Next.js + Supabase Starter App Template
 
 ## Project Description
 This project is a full-stack web application built with **Next.js (App Router)**, **Supabase**, and **TypeScript**. It implements authentication, user profiles, avatar uploads, database migrations, and protected routes using server components and middleware.
@@ -11,7 +11,7 @@ The purpose is to serve as a reusable starter template for building new apps tha
 * Supabase migrations
 
 ## Prerequisites
-Before running project, install:
+Before running the project, install:
 * Node.js ≥ 18
 * npm ≥ 9
 * Docker Desktop (required for Supabase local development)
@@ -20,7 +20,7 @@ Install Supabase CLI:
 ```bash
 npm install -g supabase
 ```
-Start Docker before running Supabase
+Ensure Docker Desktop is running before starting Supabase.
 
 ## Quick Start
 Make the setup script executable (only needed once):
@@ -91,8 +91,9 @@ lib/
     hooks/
         useAuth.ts
 supabase/
-    schemas/
+    schemas/        # source schema definitions
         profiles.sql
+    migrations/     # generated migration files
 proxy.ts
 package.json
 tsconfig.json
@@ -119,17 +120,16 @@ This ensures separation of concerns and scalability.
 5. Start building features
 
 ## Environment Variables
-Create `.env.local`
+The setup script automatically generates `.env.local` using values from:
 
-    NEXT_PUBLIC_SUPABASE_URL=
-    NEXT_PUBLIC_SUPABASE_ANON_KEY=
-    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
-
-Get value from:
-```
 supabase status
-```
-Do NOT commit `.env.local`
+
+Variables created:
+
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+If running in production, add these variables manually in Vercel.
 
 ## Database Schema Overview
 The application includes a `profiles` table defined in:
@@ -143,8 +143,8 @@ Schema/Columns:
 * `avatar_url` (text)
 * `updated_at` (timestamp with automatic trigger)
 Triggers:
-* `set_updated_at` automatically updates timestamp
-* `handle_new_user` automatically creates profile on signup
+* `set_updated_at` automatically updates the `updated_at` timestamp whenever a profile is modified
+* `handle_new_user` automatically creates a profile row whenever a new user signs up
 Row Level Security is enabled.
 Policies allow users to:
 - read their own profile
@@ -249,7 +249,7 @@ npm run test:watch
 ### Docker not running
 Start Docker Desktop
 ```
-supabase start
+npx supabase start
 ```
 ### Port already in use
 Kill Next.js process
@@ -258,12 +258,12 @@ pkill node
 ```
 ### Supabase already running
 ```
-supabase stop
-supabase start
+npx supabase stop
+npx supabase start
 ```
 ### Database not updating
 ```
-supabase db reset
+npx supabase db reset
 ```
 ### Login not working
 Check:
