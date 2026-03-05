@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - 'migrations/**'
+      - 'supabase/migrations/**'
       - 'scripts/**'
       - 'package.json'
       - 'package-lock.json'
@@ -21,9 +21,12 @@ jobs:
         with:
           version: 'latest'
 
-      - name: Link to Project
-        run: SUPABASE_ACCESS_TOKEN=${{ secrets.SUPABASE_ACCESS_TOKEN }} supabase link --project-ref ${{ secrets.SUPABASE_PROJECT_ID }}
-      
+      - name: Link to Supabase Project
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: supabase link --project-ref ${{ secrets.SUPABASE_PROJECT_REF }}
+
       - name: Apply Supabase Migrations
-        run: SUPABASE_ACCESS_TOKEN=${{ secrets.SUPABASE_ACCESS_TOKEN }} supabase db push
-          
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: supabase db push
