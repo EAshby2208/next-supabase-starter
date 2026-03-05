@@ -68,6 +68,7 @@ npm run dev
 app/
     layout.tsx
     page.tsx
+    globals.css
     login/
         page.tsx
     signup/
@@ -81,6 +82,7 @@ app/
         signup_form.tsx
         logout_button.tsx
         avatar_upload.tsx
+        navbar.tsx
 lib/
     supabase/
         client.ts
@@ -200,7 +202,7 @@ Deploy using Vercel.
 5. Link Production Database
     Locally:
     ```
-    supabase link --project-ref YOUR_PROJECT_ID
+    supabase link --project-ref YOUR_PROJECT_REF
     ```
     Push migrations:
     ```
@@ -218,7 +220,7 @@ Triggers:
 * When migrations change
 Required GitHub Secrets
 * SUPABASE_ACCESS_TOKEN
-* SUPABASE_PROJECT_ID
+* SUPABASE_PROJECT_REF
 The workflow steps:
 1. Install Supabase CLI
 2. Login using access token

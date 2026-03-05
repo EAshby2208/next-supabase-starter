@@ -15,7 +15,8 @@ export default function SignupForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const handleSignup = async () => {
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
     setLoading(true);
     setError(null);
 
@@ -25,6 +26,7 @@ export default function SignupForm() {
     });
 
     setLoading(false);
+
     if (error) {
       setError(error.message);
     } else {
@@ -33,25 +35,46 @@ export default function SignupForm() {
   };
 
   return (
-    <div>
-      <input
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+    <form onSubmit={handleSignup} className="space-y-4">
+      <div>
+        <label className="block text-sm font-medium mb-1">
+          Email
+        </label>
 
-      <input
-        placeholder="Password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <input
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      <div>
+        <label className="block text-sm font-medium mb-1">
+          Password
+        </label>
 
-      <button onClick={handleSignup} disabled={loading}>
+        <input
+          type="password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      {error && (
+        <p className="text-red-600 text-sm">{error}</p>
+      )}
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+      >
         {loading ? "Signing up..." : "Sign Up"}
       </button>
-    </div>
+    </form>
   );
 }

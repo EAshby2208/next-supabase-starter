@@ -8,7 +8,7 @@ export default function AvatarUpload({ userId }: { userId: string }) {
   const supabase = createClient();
 
   async function upload(e: any) {
-    const file = e.target.files[0];
+    const file = e.target.files?.[0];
 
     if (!file) return;
     if (!file.type.startsWith("image/")) {
@@ -17,9 +17,10 @@ export default function AvatarUpload({ userId }: { userId: string }) {
         return;
     }
 
+    const filePath = `${userId}-${Date.now()}`;
     const { data, error } = await supabase.storage
       .from("avatars")
-      .upload(`${userId}.png`, file, {
+      .upload(filePath, file, {
         upsert: true,
       });
 
@@ -39,6 +40,8 @@ export default function AvatarUpload({ userId }: { userId: string }) {
         avatar_url: url.publicUrl,
       })
       .eq("id", userId);
+
+      location.reload();
   }
 
   return <input type="file" onChange={upload} />;
