@@ -47,9 +47,6 @@ STATUS=$(npx supabase status)
 
 SUPABASE_URL=$(echo "$STATUS" | grep "Project URL" | awk '{print $5}')
 SUPABASE_ANON_KEY=$(echo "$STATUS" | grep "Publishable" | awk '{print $4}')
-echo "$STATUS"
-echo "URL=$SUPABASE_URL"
-echo "KEY=$SUPABASE_ANON_KEY"
 
 if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
   echo "❌ Failed to extract Supabase credentials"
