@@ -227,6 +227,24 @@ The workflow steps:
 3. Link to production project
 4. Run migrations using `supabase db push`
 
+## Running Tests
+This project uses Jest and React Testing Library for unit tests.
+
+Run all tests once:
+```bash
+npm run test
+```
+Run tests in watch mode (re-run tests on file changes):
+```bash
+npm run test:watch
+```
+### Adding New Tests
+1. Create a new test file in `__tests__/` (for example, `__tests__/components/myComponent.test.tsx`)
+2. Name your test files with `.test.ts` or `.test.tsx` suffix
+3. Import the component or module you want to test
+4. Write tests using describe and test or it blocks
+5. Run `npm run test` to verify
+
 ## Troubleshooting
 ### Docker not running
 Start Docker Desktop

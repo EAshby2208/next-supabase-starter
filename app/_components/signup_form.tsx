@@ -37,11 +37,12 @@ export default function SignupForm() {
   return (
     <form onSubmit={handleSignup} className="space-y-4">
       <div>
-        <label className="block text-sm font-medium mb-1">
+        <label htmlFor="email" className="block text-sm font-medium mb-1">
           Email
         </label>
 
         <input
+          id="email"
           type="email"
           required
           value={email}
@@ -51,11 +52,12 @@ export default function SignupForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1">
+        <label htmlFor="password" className="block text-sm font-medium mb-1">
           Password
         </label>
 
         <input
+          id="password"
           type="password"
           required
           value={password}
