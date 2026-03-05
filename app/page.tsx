@@ -8,20 +8,45 @@ export default async function Home() {
   const { data: { user } } = await supabase.auth.getUser();
 
   return (
-    <div>
-      <h1>Starter App</h1>
+    <div className="flex justify-center mt-20">
+      <div className="bg-white shadow rounded-lg p-8 w-full max-w-md text-center">
 
-      {user ? (
-        <>
-          <p>Logged in as {user.email}</p>
-          <Link href="/dashboard">Go to Dashboard</Link>
-        </>
-      ) : (
-        <>
-          <Link href="/login">Login</Link>
-          <Link href="/signup">Sign Up</Link>
-        </>
-      )}
+        <h1 className="text-2xl font-bold mb-6">
+          Next.js + Supabase Starter
+        </h1>
+
+        {user ? (
+          <>
+            <p className="mb-4">Logged in as {user.email}</p>
+
+            <Link
+              href="/dashboard"
+              className="text-blue-600 font-medium"
+            >
+              Go to Dashboard
+            </Link>
+          </>
+        ) : (
+          <div className="flex flex-col gap-4">
+
+            <Link
+              href="/login"
+              className="text-blue-600 font-medium"
+            >
+              Login
+            </Link>
+
+            <Link
+              href="/signup"
+              className="text-blue-600 font-medium"
+            >
+              Sign Up
+            </Link>
+
+          </div>
+        )}
+
+      </div>
     </div>
   );
 }
