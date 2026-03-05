@@ -102,3 +102,4 @@ echo "Next steps:"
 echo "1. npm run dev"
 echo "2. Open http://localhost:3000"
 echo "3. Sign up for a new account"
+
