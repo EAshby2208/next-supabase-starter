@@ -12,7 +12,7 @@ npm install
 
 # if fail...
 if [ $? -ne 0 ]; then
-  echo "❌ npm instal failed"
+  echo "❌ npm install failed"
   exit 1
 fi
 
@@ -43,21 +43,28 @@ echo ""
 # -----------------------------
 echo "🔑 Extracting Supabase credentials..."
 
-STATUS=$(npx supabase status 2>/dev/null)
+STATUS=$(npx supabase status)
 
-SUPABASE_URL=$(echo "$STATUS" | grep "Project URL" | awk '{print $3}')
-SUPABASE_ANON_KEY=$(echo "$STATUS" | grep "anon key" | awk '{print $2}')
-SUPABASE_PUBLISHABLE_KEY=$(echo "$STATUS" | grep "publishable key" | awk '{print $2}')
+# SUPABASE_URL=$(echo "$STATUS" | grep "Project URL" | awk -F '│' '{print $3}' | xargs)
+# SUPABASE_ANON_KEY=$(echo "$STATUS" | grep "Publishable" | awk -F '│' '{print $3}' | xargs)
 
-if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ] || [ -z "$SUPABASE_PUBLISHABLE_KEY" ]; then
+SUPABASE_URL=$(echo "$STATUS" | grep "Project URL" | awk '{print $5}')
+SUPABASE_ANON_KEY=$(echo "$STATUS" | grep "Publishable" | awk '{print $4}')
+echo "$STATUS"
+echo "URL=$SUPABASE_URL"
+echo "KEY=$SUPABASE_ANON_KEY"
+
+if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
   echo "❌ Failed to extract Supabase credentials"
+  echo ""
+  echo "Supabase status output:"
+  echo "$STATUS"
   exit 1
 fi
 
 echo "✅ Credentials extracted"
 echo "URL: $SUPABASE_URL"
 echo "Anon Key: $SUPABASE_ANON_KEY"
-echo "Publishable Key: $SUPABASE_PUBLISHABLE_KEY"
 echo ""
 
 # -----------------------------
@@ -72,7 +79,6 @@ fi
 cat > .env.local <<EOF
 NEXT_PUBLIC_SUPABASE_URL=$SUPABASE_URL
 NEXT_PUBLIC_SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=$SUPABASE_PUBLISHABLE_KEY
 EOF
 
 echo "✅ .env.local created"

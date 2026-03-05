@@ -161,7 +161,7 @@ Policies allow users to:
 
 ### Client Components
 * `useAuth()` hook for accessing authenticated user
-* `createBrowserCleint()` for client-side auth calls
+* `createBrowserClient()` for client-side auth calls
 
 ### Server Components
 * `createServerClient()` for secure server-side rendering
@@ -234,7 +234,7 @@ Run all tests once:
 ```bash
 npm run test
 ```
-Run tests in watch mode (re-run tests on file changes):
+Run tests in watch mode (automatically re-runs tests when file changes):
 ```bash
 npm run test:watch
 ```
