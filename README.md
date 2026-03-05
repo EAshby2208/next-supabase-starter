@@ -96,6 +96,7 @@ lib/
 supabase/
     schemas/        # source schema definitions
         profiles.sql
+        create_storage.sql
     migrations/     # generated migration files
 proxy.ts
 package.json
