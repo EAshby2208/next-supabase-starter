@@ -179,9 +179,7 @@ Policies allow users to:
 ## File Storage
 Supabase Storage is used for avatar uploads.
 
-Bucket name:
-
-`avatars`
+Bucket name: `avatars`
 
 Upload flow:
 
@@ -287,7 +285,7 @@ avatars
 and is public.
 
 ## Author
-Elisabeth
+Elisabeth A
 
 Utah State University
 
