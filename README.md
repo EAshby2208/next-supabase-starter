@@ -2,6 +2,7 @@
 
 ## Project Description
 This project is a full-stack web application built with **Next.js (App Router)**, **Supabase**, and **TypeScript**. It implements authentication, user profiles, avatar uploads, database migrations, and protected routes using server components and middleware.
+
 The purpose is to serve as a reusable starter template for building new apps that require:
 * User authentication
 * Database storage
@@ -16,6 +17,7 @@ Before running the project, install:
 * npm ≥ 9
 * Docker Desktop (required for Supabase local development)
 * Supabase CLI
+
 Install Supabase CLI:
 ```bash
 npm install -g supabase
@@ -37,6 +39,7 @@ Then start the app:
 npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
 The setup script will:
 * install dependencies
 * start Supabase
@@ -122,7 +125,7 @@ This ensures separation of concerns and scalability.
 ## Environment Variables
 The setup script automatically generates `.env.local` using values from:
 
-supabase status
+`supabase status`
 
 Variables created:
 
@@ -136,16 +139,20 @@ The application includes a `profiles` table defined in:
 ```
 supabase/schemas/profiles.sql
 ```
+
 Schema/Columns:
 * `id` (uuid, primary key, references auth.users)
 * `email` (text)
 * `full_name` (text)
 * `avatar_url` (text)
 * `updated_at` (timestamp with automatic trigger)
+
 Triggers:
 * `set_updated_at` automatically updates the `updated_at` timestamp whenever a profile is modified
 * `handle_new_user` automatically creates a profile row whenever a new user signs up
+
 Row Level Security is enabled.
+
 Policies allow users to:
 - read their own profile
 - update their own profile
@@ -159,22 +166,22 @@ Policies allow users to:
 5. If no session → redirect to login
 6. If session exists → allow access
 
-### Client Components
+#### Client Components
 * `useAuth()` hook for accessing authenticated user
 * `createBrowserClient()` for client-side auth calls
 
-### Server Components
+#### Server Components
 * `createServerClient()` for secure server-side rendering
 
-### Middleware
-`proxy.ts` refreshes tokens automatically and ensures session consistency
+#### Middleware
+* `proxy.ts` refreshes tokens automatically and ensures session consistency
 
 ## File Storage
 Supabase Storage is used for avatar uploads.
 
 Bucket name:
 
-avatars
+`avatars`
 
 Upload flow:
 
@@ -218,9 +225,11 @@ Workflow file:
 Triggers:
 * On push to main
 * When migrations change
+
 Required GitHub Secrets
 * SUPABASE_ACCESS_TOKEN
 * SUPABASE_PROJECT_REF
+
 The workflow steps:
 1. Install Supabase CLI
 2. Login using access token
@@ -279,6 +288,9 @@ and is public.
 
 ## Author
 Elisabeth
+
 Utah State University
+
 Spring 2026
+
 CS4610
