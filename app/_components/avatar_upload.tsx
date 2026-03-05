@@ -10,13 +10,22 @@ export default function AvatarUpload({ userId }: { userId: string }) {
   async function upload(e: any) {
     const file = e.target.files[0];
 
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+        alert("Please select an image file.");
+        console.error("File must be an image");
+        return;
+    }
+
     const { data, error } = await supabase.storage
       .from("avatars")
       .upload(`${userId}.png`, file, {
         upsert: true,
       });
+
     if (error || !data) {
         console.error(error);
+        alert("Failed to upload avatar. Please try again.");
         return;
     }
 

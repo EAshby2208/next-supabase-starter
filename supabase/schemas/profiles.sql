@@ -1,4 +1,5 @@
 -- supabase/schemas/profiles.sql
+
 CREATE TABLE if NOT EXISTS public.profiles (
   id uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
   email TEXT NOT NULL,

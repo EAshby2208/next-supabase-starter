@@ -5,7 +5,7 @@ import LoginForm from "@/app/_components/login_form"
 jest.mock("@/lib/supabase/client", () => ({
   createClient: () => ({
     auth: {
-      signInWithOtp: jest.fn(),
+      signInWithPassword: jest.fn(),
     },
   }),
 }))
